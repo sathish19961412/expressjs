@@ -1,18 +1,16 @@
-const http=require('http');
 const express = require('express');
-
 const app =express();
-app.use((req,res,next)=>{
-    console.log("First Middleware");
-    next();
+const bodyparser=require('body-parser');
+
+app.use(bodyparser.urlencoded())
+
+app.use('/add-product',(req,res,next)=>{
+    res.send("<h2>Add Product</h2><form action='/store-product' method='post'><input type='text' name='title'><input type='submit' value='submit'></form>");
 })
-app.use((req,res,next)=>{
-    console.log("Second Middleware");
-    next();
+app.use('/store-product',(req,res,next)=>{
+    console.log("form-data",req.body);
+    res.send("<h2>Product Submitted !</h2>");
 })
-app.use((req,res,next)=>{
-    console.log("Third Middleware");
-    res.send("<center><h1>Hello From Expressjs !</h1></center>")
-})
-const server=http.createServer(app);
-server.listen(8080);
+
+
+app.listen(8080);
