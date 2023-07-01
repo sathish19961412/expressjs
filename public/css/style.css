@@ -1,0 +1,11 @@
+header{
+    background: #0a3bc3;
+}
+
+li a{
+    color: white;
+    display: flex;
+}
+a{
+    text-decoration: none;
+}
